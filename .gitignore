@@ -1,0 +1,19 @@
+.gitignore
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.db
+*.pdb
+*.cache
+*.log
+*.msix
+*.msixbundle
+*.appx
+
+# VS Code
+.vscode/
+
+# Rider
+.idea/

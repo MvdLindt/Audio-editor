@@ -1,0 +1,41 @@
+<Window x:Class="AudioEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Accessible Audio Editor" Height="360" Width="640"
+        KeyDown="Window_KeyDown">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0" Margin="0,0,0,8">
+            <Button Name="OpenButton" Click="OpenButton_Click" Margin="0,0,8,0" Padding="8,4" AutomationProperties.Name="Open file (Alt O)" ToolTip="Open audio file">_Open</Button>
+            <Button Name="PlayPauseButton" Click="PlayPauseButton_Click" Margin="0,0,8,0" Padding="8,4" AutomationProperties.Name="Play or pause (Space)">Play</Button>
+            <Button Name="StopButton" Click="StopButton_Click" Margin="0,0,8,0" Padding="8,4" AutomationProperties.Name="Stop playback (Alt S)">Stop</Button>
+            <Button Name="TrimButton" Click="TrimButton_Click" Margin="0,0,8,0" Padding="8,4" AutomationProperties.Name="Trim selection and export (Alt T)">Trim & Export</Button>
+        </StackPanel>
+
+        <Border Grid.Row="1" BorderBrush="#FF999999" BorderThickness="1" Padding="8">
+            <StackPanel>
+                <TextBlock Text="File:" FontWeight="Bold"/>
+                <TextBlock Name="FilePathText" Text="(no file)" TextWrapping="Wrap" AutomationProperties.Name="Current file path"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                    <TextBlock VerticalAlignment="Center" Margin="0,0,8,0">Selection start (sec):</TextBlock>
+                    <TextBox Name="StartText" Width="80" Text="0" AutomationProperties.Name="Selection start in seconds" />
+                    <TextBlock VerticalAlignment="Center" Margin="12,0,8,0">End (sec):</TextBlock>
+                    <TextBox Name="EndText" Width="80" Text="0" AutomationProperties.Name="Selection end in seconds" />
+                </StackPanel>
+
+                <TextBlock Name="StatusText" Margin="0,12,0,0" Text="Ready" AutomationProperties.Name="Status" />
+            </StackPanel>
+        </Border>
+
+        <TextBlock Grid.Row="2" Text="Keyboard shortcuts: Alt+O Open, Space Play/Pause, Alt+S Stop, Alt+T Trim/Export" Margin="0,8,0,0"/>
+    </Grid>
+</Window>
