@@ -1,24 +1,39 @@
-name: .NET Build (Windows)
+# Audio Editor
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+A Windows-only, single-track audio editor written in C# with WPF and NAudio.
 
-jobs:
-  build:
-    runs-on: windows-latest
+Features
+- Open WAV and MP3 audio files
+- Playback and stop controls
+- Simple waveform overview
+- Selection in seconds
+- Trim and export the selected region as WAV
+- Accessible control labels and keyboard shortcuts
 
-    steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '8.0.x'
-    - name: Restore
-      run: dotnet restore ./src/AudioEditor/AudioEditor.csproj
-    - name: Build
-      run: dotnet build ./src/AudioEditor/AudioEditor.csproj -c Release --no-restore
-    - name: Run unit tests (none yet)
-      run: echo "No tests configured"
+Requirements
+- Windows 10 or 11
+- Visual Studio 2022 with the .NET desktop workload
+- .NET 8 SDK
+
+Build and run locally
+1. Open the solution in Visual Studio.
+2. Restore NuGet packages.
+3. Build the solution in Release mode.
+4. Run the app.
+
+Single-file publish for Windows x64
+From the repository root:
+
+```powershell
+dotnet publish .\src\AudioEditor\AudioEditor.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:UseAppHost=true -p:IncludeNativeLibrariesForSelfExtract=true
+```
+
+This creates a single-file self-contained Windows application without requiring a separate .NET installation.
+
+Accessibility notes
+- Use Narrator, NVDA or JAWS on Windows to test the app.
+- Keyboard shortcuts: Alt+O Open, Space Play/Pause, Alt+S Stop, Alt+T Trim & Export.
+
+Repository structure
+- `src/AudioEditor/` — WPF application project
+- `.github/workflows/` — GitHub Actions workflow for build and publication
